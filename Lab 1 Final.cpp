@@ -38,8 +38,9 @@ class PLC{
         cout<<"\tTest Point: "<<endl;
         tp.inputPoint();
         
-        //test for start point
-        if(tp.x==fp.x && tp.y==fp.y){
+        if(Area (fp,lp,tp) ==0) {
+      		//test for start point
+		  if(tp.x==fp.x && tp.y==fp.y){
             cout<<"\n\t The test point is ("<<tp.x<<","<<tp.y<<")";
             cout<<" start point";
         }
@@ -65,8 +66,18 @@ class PLC{
                 cout<<"\n\t The test point ("<<tp.x<<","<<tp.y<<")";
                 cout<<" is beyond the given line segment.";
             }
-        }    
+		}       
+		}
+		else {
+			 //test for point is not start or end point
+        cout<<"The point is out of bound";
+        }
     }
+		
+		template<class A, class B, class C>
+    	double Area(A& a, B& b, C& c){
+        return 0.5*(a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y));    
+    }  
 };
   
 int main() { 
