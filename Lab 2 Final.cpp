@@ -95,37 +95,28 @@ class LineIntersection
 		a3 = computeArea(p3,p4,p1);
 		a4 = computeArea(p3,p4,p2);
 		
+		if(((a1 > 0 && a2 < 0) && (a3 > 0 && a4 < 0))|| ((a1 > 0 && a2 < 0) && (a3 < 0 && a4 > 0)) || 
+			((a1 < 0 && a2 > 0) && (a3 < 0 && a4 > 0))|| ((a1 < 0 && a2 > 0) && (a3 > 0 && a4 < 0)))
+			
+			{
+				cout<<"The line intersect";	
+			}
 		
-		//Case 2 for intersection with area==o (collinearity)
-		// cheack area for if 3 point are collinear i.e. improper intersection
-		if(computeArea(p1,p2,p3) ==0){
-			cout<<"Three of the endpoints are collinear. So it is improper intersection";
+		
+		else if (a1*a2 == 0){
+		 if(a1== 0 || a2 == 0 || a3 == 0 || a4 == 0) {
+		cout<<"Three of the endpoints are collinear. So it is improper intersection";
 		}
+	
 		//check for horizontal betweeness improper intersection
-		else if (p1.x<=p3.x<=p2.x || p1.x>=p3.x>=p2.x){
-			cout<<"point p3 lies in between p1 and p2 horizontally";
+		else if (p1.x<=p3.x<=p2.x || p1.x>=p3.x>=p2.x && p1.y<=p3.y<=p2.y || p1.y>=p3.y>=p2.y ) {
+			cout<<"no intersection";
+			}
 		}
-		//check for vertical betweeness improper intersection
-		else if (p1.y<=p3.y<=p2.y || p1.y>=p3.y>=p2.y){
-			cout<<"point p3 lies in between p1 and p2 vertically";
-		}
-		
-		else {
-		if (a1 * a2 < 0 )
-		{
-			cout<<"The line intersect";
-        }
-        else if (a1 * a2 > 0 )
-		{
-			cout<<"No Intersection";
-        }
-		else
-		{
-			cout<<"May be improper intersect";
-        }	
-		}
-        
-    } 
+else 
+		cout<<"no intersection"	;
+	
+   } 
     
     template<class A, class B, class C>
     double computeArea(A& a, B& b, C& c){
